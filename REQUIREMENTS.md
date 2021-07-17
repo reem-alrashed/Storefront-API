@@ -5,27 +5,49 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## API Endpoints
 #### Products
-- Index 
-- Show
-- Create [token required]
-- [OPTIONAL] Top 5 most popular products 
-- [OPTIONAL] Products by category (args: product category)
+
+- Index: 'products/' 
+Method: [GET]  [token required]
+
+- Show: 'products/:id'   
+Method: [GET]  [token required]
+
+- Create: 'product/' 
+Method: [POST]  [token required]
+
 
 #### Users
-- Index [token required]
-- Show [token required]
-- Create N[token required]
 
+- Index: 'users/' 
+Method: [GET]  [token required]  
+
+- Show: 'users/:id'   
+Method: [GET]  [token required]
+
+- Create: 'user/' 
+Method: [POST]  [token required]
 #### Orders
-- Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
+- Index: 'orders/:user_id' 
+Method: [GET]  [token required]
+
+
+- Current Order by user (args: user id)
+Method: [GET]  [token required]
 
 ## Data Shapes
 #### Product
 -  id
 - name
-- price
-- [OPTIONAL] category
+- price  
+
+```
+create table Product (
+    id serial primary key,
+    name varchar(50) not null,
+    price number not null
+    );
+
+```
 
 #### User
 - id
@@ -33,6 +55,15 @@ These are the notes from a meeting with the frontend developer that describe wha
 - lastName
 - password
 
+```
+create table User (
+    id serial primary key,
+    firstName varchar(50) not null,
+    lastName varchar(50) not null,
+    password varchar(60) not null
+    );
+
+```
 #### Orders
 - id
 - id of each product in the order
@@ -40,3 +71,12 @@ These are the notes from a meeting with the frontend developer that describe wha
 - user_id
 - status of order (active or complete)
 
+```
+create table Orders (
+    id serial primary key,
+    quantity integer,
+    status enum(active, complete) not null,
+    user_id integer (fk to users table),
+    product_id integer (fk to products table)
+    );
+```
