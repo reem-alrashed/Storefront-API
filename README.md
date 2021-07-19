@@ -1,3 +1,4 @@
+<img width="813" alt="Screen Shot 2021-07-19 at 8 28 58 PM" src="https://user-images.githubusercontent.com/68843028/126201956-72b05afc-9d5b-42ee-ae69-478683f9346a.png">
 # Storefront Backend Project
 
 ## Getting Started
@@ -69,7 +70,8 @@ ENVI = dev
 ```
 npm start
 ```
-This command will run the server on port 3000. 
+This command will run the server on port 3000.   
+
 <img width="580" alt="Screen Shot 2021-07-18 at 8 17 42 PM" src="https://user-images.githubusercontent.com/68843028/126076340-406616d0-c526-4b9d-bddb-2a68619cfcbb.png">
 
 
@@ -92,5 +94,6 @@ Run test with
 ```
 yarn test
 ```
+<img width="813" alt="Screen Shot 2021-07-19 at 8 28 58 PM" src="https://user-images.githubusercontent.com/68843028/126202117-f9291a18-2e54-459a-b005-f77eed1c4c26.png">
 
 
