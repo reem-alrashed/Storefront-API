@@ -4,51 +4,93 @@
 
 This repo contains a basic Node and Express app to get you started in constructing an API. To get started, clone this repo and run `yarn` in your terminal at the project root.
 
-## Required Technologies
-Your application must make use of the following libraries:
-- Postgres for the database
-- Node/Express for the application logic
-- dotenv from npm for managing environment variables
-- db-migrate from npm for migrations
-- jsonwebtoken from npm for working with JWTs
-- jasmine from npm for testing
+## Dependencies 
 
-## Steps to Completion
+To install the dependencies for this project, run the following command: 
 
-### 1. Plan to Meet Requirements
+```
+npm install
+```
 
-In this repo there is a `REQUIREMENTS.md` document which outlines what this API needs to supply for the frontend, as well as the agreed upon data shapes to be passed between front and backend. This is much like a document you might come across in real life when building or extending an API. 
 
-Your first task is to read the requirements and update the document with the following:
-- Determine the RESTful route for each endpoint listed. Add the RESTful route and HTTP verb to the document so that the frontend developer can begin to build their fetch requests.    
-**Example**: A SHOW route: 'blogs/:id' [GET] 
+## Database setup
 
-- Design the Postgres database tables based off the data shape requirements. Add to the requirements document the database tables and columns being sure to mark foreign keys.   
-**Example**: You can format this however you like but these types of information should be provided
-Table: Books (id:varchar, title:varchar, author:varchar, published_year:varchar, publisher_id:string[foreign key to publishers table], pages:number)
+Start using postgres:
+```
+psql postgres
+```
+Create user:
+```
+CREATE USER store_user WITH PASSWORD '123';
+```
 
-**NOTE** It is important to remember that there might not be a one to one ratio between data shapes and database tables. Data shapes only outline the structure of objects being passed between frontend and API, the database may need multiple tables to store a single shape. 
+Create dev and test databases:
+```
+CREATE DATABASE store;
+CREATE DATABASE store_test;
+```
+Connect to dev database and grant all privileges:
+```
+\c store;
+GRANT ALL PRIVILEGES ON DATABASE store TO store_user;
+```
+Connect to test database and grant all privileges:
+```
+\c store_test
 
-### 2.  DB Creation and Migrations
+GRANT ALL PRIVILEGES ON DATABASE store_test TO store_user;
+```
+Start migrations:
+```
+yarn dev-up
+```
 
-Now that you have the structure of the databse outlined, it is time to create the database and migrations. Add the npm packages dotenv and db-migrate that we used in the course and setup your Postgres database. If you get stuck, you can always revisit the database lesson for a reminder. 
+<img width="962" alt="Screen Shot 2021-07-18 at 3 39 50 PM" src="https://user-images.githubusercontent.com/68843028/126075199-451cf922-4fb7-4087-95e9-6aedfda8be6f.png">. 
 
-You must also ensure that any sensitive information is hashed with bcrypt. If any passwords are found in plain text in your application it will not pass.
+## Environment Set up
+Create an .env file and add the following variable along with their values
 
-### 3. Models
+```
+DB_NAME = store
+DB_NAME_TEST = store_test
+DB_HOST = localhost
+DB_PORT = 5432
+DB_USER = store_user
+DB_PASS= 123123
 
-Create the models for each database table. The methods in each model should map to the endpoints in `REQUIREMENTS.md`. Remember that these models should all have test suites and mocks.
+BCRYPT_PASSWORD=i-am-name-2021
+SALT_ROUNDS=10
+TOKEN_TEST = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.J8BgsyqA3Y6F71NXbfuYIfRVuvRa_qb08RStxrCVhlQ
+JWT_SECRET = 5ae8adc9731627905ebf0905dbe4a114ba7d8354ae1796772dfa523a2142761b78d48cbfcd98000bb94fbdbd8147f30de6b3484c3a060d389068204df6a50630
+ENVI = dev
+```
 
-### 4. Express Handlers
+## Start the Server:
+```
+npm start
+```
+This command will run the server on port 3000. 
+<img width="580" alt="Screen Shot 2021-07-18 at 8 17 42 PM" src="https://user-images.githubusercontent.com/68843028/126076340-406616d0-c526-4b9d-bddb-2a68619cfcbb.png">
 
-Set up the Express handlers to route incoming requests to the correct model method. Make sure that the endpoints you create match up with the enpoints listed in `REQUIREMENTS.md`. Endpoints must have tests and be CORS enabled. 
 
-### 5. JWTs
+## Running Ports
+After starting the server, the server will start on port 3000 and the database on port 5432. 
 
-Add JWT functionality as shown in the course. Make sure that JWTs are required for the routes listed in `REQUIUREMENTS.md`.
+## Endpoints
+All endpoints are provided in REQUIREMENT.md file.
 
-### 6. QA and `README.md`
+## Token and Authentication
 
-Before submitting, make sure that your project is complete with a `README.md`. Your `README.md` must include instructions for setting up and running your project including how you setup, run, and connect to your database. 
+Tokens are passed along with the http header as
+```
+Authorization Bearer <token>
+```  
 
-Before submitting your project, spin it up and test each endpoint. If each one responds with data that matches the data shapes from the `REQUIREMENTS.md`, it is ready for submission!
+
+## Testing
+Run test with
+```
+yarn test
+```
+
+
