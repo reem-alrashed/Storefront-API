@@ -1,4 +1,3 @@
-<img width="813" alt="Screen Shot 2021-07-19 at 8 28 58 PM" src="https://user-images.githubusercontent.com/68843028/126201956-72b05afc-9d5b-42ee-ae69-478683f9346a.png">
 # Storefront Backend Project
 
 ## Getting Started
