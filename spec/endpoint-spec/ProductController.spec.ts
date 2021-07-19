@@ -75,22 +75,6 @@ describe('Test Product endpoint responses', () => {
     });
     done();
   });
-  it('gets product by category api endpoint', async (done) => {
-    const res = await request
-      .get('/products/cat/phone')
-      .set('Authorization', 'Bearer ' + token);
-
-    expect(res.status).toBe(200);
-    expect(res.body).toEqual([
-      {
-        id: 1,
-        name: 'iphone',
-        price: '3000',
-        category: 'phone'
-      }
-    ]);
-    done();
-  });
   it('create product api endpoint', async (done) => {
     const res = await request
       .post('/products')

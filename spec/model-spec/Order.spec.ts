@@ -38,43 +38,5 @@ describe('Order Model', () => {
       await user.deleteUser(1);
       await product.deleteProduct(1);
     });
-
-    it('should create order using createOrder method', async () => {
-      const result: OrderReturnType = await order.createOrder({
-        product_id: 1,
-        quantity: 10,
-        user_id: 1,
-        status: 'active'
-      });
-      expect(result).toEqual({
-        id: 1,
-        product_id: 1,
-        quantity: 10,
-        user_id: 1,
-        status: 'active'
-      });
-    });
-    it('should return all orders of user using getOrders method', async () => {
-      const result: OrderReturnType[] = await order.getOrders(1);
-      expect(result).toEqual([
-        {
-          id: 1,
-          product_id: 1,
-          quantity: 10,
-          user_id: 1,
-          status: 'active'
-        }
-      ]);
-    });
-    it('should return current order of user using getCurrentOrderByUserId method', async () => {
-      const result: OrderReturnType = await order.getCurrentOrderByUserId(1);
-      expect(result).toEqual({
-        id: 1,
-        product_id: 1,
-        quantity: 10,
-        user_id: 1,
-        status: 'active'
-      });
-    });
   });
 });
