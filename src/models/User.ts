@@ -40,7 +40,7 @@ export class User {
   // create a user
   async createUser(user: UserType): Promise<UserCreatedReturnType> {
     try {
-      const { firstname, lastname, password } = user;
+      const { firstName, lastName, password } = user;
       const pepper: string = process.env.BCRYPT_PASSWORD as string;
       const salt: string = process.env.SALT_ROUNDS as string;
 
@@ -51,12 +51,11 @@ export class User {
       const con: PoolClient = await pool.connect();
       const sql: string = `INSERT INTO ${this.table} (firstName, lastName, password) VALUES($1, $2, $3) RETURNING *`;
       const result: QueryResult = await con.query(sql, [
-        firstname,
-        lastname,
+        firstName,
+        lastName,
         hashPassword
       ]);
       con.release();
-
       const id: number = result.rows[0].id;
       const token: string = generateToken(id);
       return {

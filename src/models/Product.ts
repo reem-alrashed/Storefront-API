@@ -25,39 +25,21 @@ export class Product {
       const sql: string = `SELECT * FROM ${this.table} WHERE id=$1`;
       const result: QueryResult = await con.query(sql, [productId]);
       con.release();
-
       return result.rows[0];
     } catch (err) {
       throw new Error(`Could not get product by id. Error: ${parseError(err)}`);
     }
   }
 
-  // select product by category
-  async getProductByCat(category: string): Promise<ProductReturnType[]> {
-    try {
-      const con: PoolClient = await pool.connect();
-      const sql: string = `SELECT * FROM ${this.table} WHERE category=$1`;
-      const result: QueryResult = await con.query(sql, [category]);
-      con.release();
-
-      return result.rows;
-    } catch (err) {
-      throw new Error(
-        `Could not get product by category. Error: ${parseError(err)}`
-      );
-    }
-  }
-
   // create product
   async createProduct(product: ProductType): Promise<ProductReturnType> {
     try {
-      const { name, price, category } = product;
-      const sql: string = `INSERT INTO ${this.table} (name, price, category) VALUES($1, $2, $3) RETURNING *`;
+      const { name, price } = product;
+      const sql: string = `INSERT INTO ${this.table} (name, price) VALUES($1, $2) RETURNING *`;
       const con: PoolClient = await pool.connect();
       const result: QueryResult = await con.query(sql, [
         name,
-        price,
-        category
+        price
       ]);
       con.release();
 

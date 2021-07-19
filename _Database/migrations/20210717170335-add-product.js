@@ -31,7 +31,7 @@ exports.up = function(db) {
 };
 
 exports.down = function(db) {
-  let filePath = path.join(__dirname, 'sqls', '20210717170335-add-product-down.sql');
+  let filePath = path.join(__dirname, 'sqls', '20210718170335-add-product-down.sql');
   return new Promise( function( resolve, reject ) {
     fs.readFile(filePath, {encoding: 'utf-8'}, function(err,data){
       if (err) return reject(err);

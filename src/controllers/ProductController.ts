@@ -17,12 +17,7 @@ ProductController.get('/:id', async (req: Request, res: Response) => {
   const productById: ProductType = await product.getProductById(productId);
   return res.json(productById);
 });
-// Get products by category
-ProductController.get('/cat/:category', async (req: Request, res: Response) => {
-  const category: string = String(req.params.category);
-  const productByCat: ProductType[] = await product.getProductByCat(category);
-  return res.json(productByCat);
-});
+
 // Create product
 ProductController.post('/', authToken, async (req: Request, res: Response) => {
   const createdProduct: ProductType = await product.createProduct(req.body);
