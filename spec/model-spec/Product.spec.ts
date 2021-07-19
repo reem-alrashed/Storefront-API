@@ -8,9 +8,7 @@ describe('Product Model', () => {
   it('should have a createProduct  method', () => {
     expect(product.createProduct).toBeDefined();
   });
-  it('should have a getProductByCat method', () => {
-    expect(product.getProductByCat).toBeDefined();
-  });
+
   it('should have a getProductById method', () => {
     expect(product.getProductById).toBeDefined();
   });
@@ -23,14 +21,12 @@ describe('Product Model', () => {
   it('should create a product using createProduct method', async () => {
     const result: ProductReturnType = await product.createProduct({
       name: 'iPhone',
-      price: '645',
-      category: 'phone'
+      price: '645'
     });
     expect(result).toEqual({
       id: 2,
       name: 'iPhone',
-      price: '645',
-      category: 'phone'
+      price: '645'
     });
   });
   it('should return a list of products using getProducts', async () => {
@@ -39,8 +35,7 @@ describe('Product Model', () => {
       {
         id: 2,
         name: 'iPhone',
-        price: '645',
-        category: 'phone'
+        price: '645'
       }
     ]);
   });
@@ -50,28 +45,16 @@ describe('Product Model', () => {
     expect(result).toEqual({
       id: 2,
       name: 'iPhone',
-      price: '645',
-      category: 'phone'
+      price: '645'
     });
   });
-  it('should return the correct product using getProductByCat', async () => {
-    const result: ProductReturnType[] = await product.getProductByCat('phone');
-    expect(result).toEqual([
-      {
-        id: 2,
-        name: 'iPhone',
-        price: '645',
-        category: 'phone'
-      }
-    ]);
-  });
+
   it('should delete the correct product using deleteProduct', async () => {
     const result: ProductReturnType = await product.deleteProduct(2);
     expect(result).toEqual({
       id: 2,
       name: 'iPhone',
-      price: '645',
-      category: 'phone'
+      price: '645'
     });
   });
 });

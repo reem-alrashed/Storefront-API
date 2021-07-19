@@ -26,16 +26,7 @@ describe('Test Product endpoint responses', () => {
         category: 'phone'
       })
     );
-    spyOn(Product.prototype, 'getProductByCat').and.returnValue(
-      Promise.resolve([
-        {
-          id: 1,
-          name: 'iphone',
-          price: '3000',
-          category: 'phone'
-        }
-      ])
-    );
+
     spyOn(Product.prototype, 'createProduct').and.returnValue(
       Promise.resolve({
         id: 1,

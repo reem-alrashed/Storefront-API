@@ -12,8 +12,8 @@ describe('Test endpoint responses', () => {
       Promise.resolve([
         {
           id: 1,
-          firstname: 'eyong',
-          lastname: 'kevin',
+          firstName: 'eyong',
+          lastName: 'kevin',
           password: 'thisisenow'
         }
       ])
@@ -21,8 +21,8 @@ describe('Test endpoint responses', () => {
     spyOn(User.prototype, 'getUserById').and.returnValue(
       Promise.resolve({
         id: 1,
-        firstname: 'eyong',
-        lastname: 'kevin',
+        firstName: 'eyong',
+        lastName: 'kevin',
         password: 'thisisenow'
       })
     );
@@ -36,8 +36,8 @@ describe('Test endpoint responses', () => {
     spyOn(User.prototype, 'deleteUser').and.returnValue(
       Promise.resolve({
         id: 1,
-        firstname: 'eyong',
-        lastname: 'kevin',
+        firstName: 'eyong',
+        lastName: 'kevin',
         password: 'thisisenow'
       })
     );

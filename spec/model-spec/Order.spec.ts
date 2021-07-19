@@ -25,14 +25,13 @@ describe('Order Model', () => {
 
     beforeAll(async () => {
       await user.createUser({
-        firstname: 'kevin',
-        lastname: 'eyong',
+        firstName: 'kevin',
+        lastName: 'eyong',
         password: 'thisismeenow2020#'
       });
       await product.createProduct({
         name: 'iPhone',
-        price: '645',
-        category: 'phone'
+        price: '645'
       });
     });
     afterAll(async () => {
