@@ -80,3 +80,15 @@ create table Orders (
     product_id integer (fk to products table)
     );
 ```
+
+## Order_products
+
+```
+CREATE TABLE order_products(
+  order_id INT,
+  product_id INT,
+  CONSTRAINT fk_order_id FOREIGN KEY(order_id) REFERENCES orders(id),
+  CONSTRAINT fk_product_id FOREIGN KEY(product_id) REFERENCES products(id),
+  quantity INT
+);
+```
